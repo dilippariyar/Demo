@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilip Pariyar Portfolio Home page for github.com Demo page </title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Container for the portfolio */
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ff0099, #493240);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin: 0;
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0;
+            }
+            100% {
+                text-shadow: 0 0 20px #00f, 0 0 40px #00f, 0 0 60px #00f;
+            }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff0;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #00f;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-card ul li {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .experience h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff0;
+        }
+
+        .experience p {
+            font-size: 1.1rem;
+        }
+
+        /* Download Resume Button */
+        .download-resume {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .download-resume a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #00f, #ff0);
+            color: #000;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            animation: pulseButton 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseButton {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            margin: 0 0 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: #ff0;
+        }
+    </style>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="portfolio-container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Dilip pariyar </h1>
+            <p>Digital Marketing & Web Development Professional</p>
+        </div>
+
+        <!-- About Section -->
+        <div class="about">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate digital marketing and web development professional with a Bachelor of Management Studies in Marketing from Shankar Narayan College, Mumbai University. I hold certifications in Fundamentals of Digital Marketing (Google), E-commerce and Digital Marketing (Coursera), and have completed courses in Introduction to Programming and Advanced Excel by Vision Aid. With 5 months of experience in SEO, I bring a blend of technical and digital marketing expertise to the table.
+            </p>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills">
+            <div class="skill-card">
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript (Basics)</li>
+                    <li>Python (Basics)</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Digital Marketing</h3>
+                <ul>
+                    <li>Advanced SEO</li>
+                    <li>SEM (Search Engine Marketing)</li>
+                    <li>Email Marketing</li>
+                    <li>Social Media Marketing</li>
+                    <li>Content Marketing</li>
+                    <li>Google Analytics</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="experience">
+            <h2>Experience</h2>
+            <p>
+                <strong>SEO Intern</strong> - 5 months of hands-on experience in optimizing websites for search engines, conducting keyword research, and improving organic search rankings.
+            </p>
+        </div>
+
+        <!-- Download Resume Button -->
+        <div class="download-resume">
+            <a href="#" download="Raghunath_Ghosh_Resume.pdf">Download Resume</a>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>Contact: Raghunath06@gmail.com | Phone: +91 98765 43210</p>
+            <div class="social-icons">
+                <a href="mailto:dilippariyar06@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+918657213745" target="_blank" title="Phone"><i class="fas fa-phone"></i></a>
+                <a href="https://www.linkedin.com/in/dilip-pariyar" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
