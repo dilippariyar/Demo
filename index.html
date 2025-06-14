@@ -452,24 +452,29 @@
         </ul>
     </nav>
 
-    <div class="portfolio-container" role="main">
+    <main class="portfolio-container" role="main">
+        <section aria-labelledby="profile-header">
         <div class="header" id="profile-header"> 
-            <div class="profile-image-container" role="img" label="profile image">
+            <div class="profile-image-container" role="img" aria-label="profile image">
                 <img src="dilip.jpg" alt="Dilip Pariyar's Profile picture" class="profile-picture">
                 </div>
             <h1>Dilip Pariyar</h1>
             <p>Digital Marketing & Web Accessibility Professional</p>
         </div>
+        </section>
 
-        <div class="about" id="about-section" role="region" labelledby="about-section"> 
-            <h2>About Me</h2>
+        <section labelledby="about-title">
+        <div class="about" id="about-section"> 
+            <h2 id="about-title">About Me</h2>
             <p>
                 I am a passionate digital marketing and web accessibility professional with a Bachelor of Management Studies in Marketing from Shankar Narayan College, Mumbai University. I hold certifications in Fundamentals of Digital Marketing (Google), E-commerce and Digital Marketing (Coursera), and have completed courses in Introduction to Programming and Advanced Excel by Vision Aid. With 5 months of experience in SEO, I bring a blend of technical and digital marketing expertise to the table.
             </p>
         </div>
+        </section>
 
-        <section aria-labelledby="skills-section">
+        <section aria-labelledby="skill-title">
         <div class="skills" id="skills-section"> 
+            <h2 id="skill-title">My Skills</h2>
             <div class="skill-card">
                 <h3>Technical Skills</h3>
                 <ul>
@@ -506,11 +511,11 @@
                 <strong>SEO Intern</strong> - 5 months of hands-on experience in optimizing websites for search engines, conducting keyword research, and improving organic search rankings.
             </p>
         </div>
-</section>
+        </section>
 
-        <section aria-labelledby="projects-section">
+        <section aria-labelledby="project-title">
         <div class="projects" id="projects-section"> 
-            <h2>My Projects</h2>
+            <h2 id="project-title">My Projects</h2>
             <div class="project-item">
                 <h3>Portfolio Website</h3>
                 <p>Designed and developed this personal portfolio website to showcase my skills, experience, and projects. Focused on a clean, responsive design with subtle animations.</p>
@@ -527,15 +532,16 @@
                 <a href="#" target="_blank" class="project-link" aria-label="View Campaign Analysis Project">Read Analysis</a>
             </div>
         </div>
-        </section>section>
+        </section>
+    </main>
 
-        <section labelledby="resume-section">
+        <section aria-labelledby="resume-section">
         <div class="download-resume" id="resume-section">
             <a href="Dilip_Resume.pdf" download="Dilip_Pariyar_Resume.pdf">Download Resume</a>
             </div>
         </section>
-            
-        <div class="footer" id="contact-sectfion" role="complementary"> 
+       
+        <footer class="footer" id="contact-section"> 
             <p>Contact: dilippariyar06@gmail.com | Phone: +91 98765 43210</p>
             <div class="social-icons" role="region" aria-label="social media links">
                 <a href="mailto:dilippariyar06@gmail.com" target="_blank" title="Email" aria-label="Send an email"><i class="fas fa-envelope"></i></a>
@@ -543,9 +549,9 @@
                 <a href="https://www.linkedin.com/in/dilip-pariyar" target="_blank" title="LinkedIn" aria-label="Dilip Pariyar's LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
                 <a href="https://www.github.com/dilippariyar" target="_blank" title="GitHub" aria-label="Dilip Pariyar's GitHub Profile"><i class="fab fa-github"></i></a>
                 </div>
-        </div>
-    </div>
+        </footer>
 
+<!-- Added internal javascript -->
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
         const menuLinks = document.getElementById('menu-links-main'); // Using ID selector
