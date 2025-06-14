@@ -202,48 +202,86 @@
         }
 
         /* Skills Section */
-        .skills {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
+/* Skills Section Container */
+.skills {
+    display: flex; /* Enables Flexbox for arranging children in a row */
+    justify-content: center; /* Centers the skill cards horizontally as a group */
+    align-items: flex-start; /* Aligns items to the start of the cross-axis (top) */
+    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens (for responsiveness) */
+    gap: 20px; /* NEW: Adds space between skill cards */
+    margin-bottom: 40px;
+    padding: 0 20px; /* NEW: Add some horizontal padding to prevent cards from touching edges */
+}
 
-        .skill-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            width: 200px;
-            margin: 10px;
-            text-align: center;
-            animation: float 4s infinite ease-in-out;
-        }
+/* Individual Skill Card */
+.skill-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    /* Use flex-basis for responsive column distribution */
+    flex-basis: calc(33.333% - 20px); /* UPDATED: Aims for 3 columns, accounting for gap */
+    max-width: 300px; /* NEW: Optional: Prevent cards from becoming too wide on very large screens */
+    flex-grow: 1; /* NEW: Allows cards to grow and fill available space */
+    margin: 0; /* UPDATED: Remove individual card margins now that gap handles spacing */
+    text-align: center;
+    animation: float 4s infinite ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* NEW: Added subtle border for definition */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* NEW: Enhanced shadow */
+}
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
-        .skill-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #00f;
-        }
+.skill-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px; /* UPDATED: Increased margin for better spacing */
+    color: #00e6ff; /* UPDATED: Changed color for better contrast/theming */
+    text-transform: uppercase; /* NEW: Added for subtle styling */
+}
 
-        .skill-card ul {
-            list-style: none;
-            padding: 0;
-        }
+.skill-card ul {
+    list-style: none;
+    padding: 0;
+}
 
-        .skill-card ul li {
-            font-size: 1rem;
-            margin: 5px 0;
-        }
+.skill-card ul li {
+    font-size: 1rem;
+    margin: 8px 0; /* UPDATED: Adjusted margin for list items */
+    color: #cbd5e0; /* NEW: Softer text color */
+}
 
+/* Section Title (assuming it's an h2 for "My Skills") */
+/* If your h2 is directly inside the container that has .section-title,
+   you can modify .section-title directly. Otherwise, you might need a
+   specific class for the "My Skills" heading. */
+.section-title { /* Assuming this class is on your "My Skills" h2 */
+    text-align: center; /* UPDATED: Centers the heading */
+    font-size: 2.8rem; /* NEW: Adjusted font size */
+    margin-bottom: 50px; /* NEW: Space below the heading */
+    background: linear-gradient(45deg, #a0dfff, #63b3ed); /* NEW: Example gradient color for headings */
+    -webkit-background-clip: text; /* NEW: For gradient text */
+    background-clip: text; /* NEW: For gradient text */
+    color: transparent; /* NEW: Makes text transparent to show gradient */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .skill-card {
+        flex-basis: calc(50% - 20px); /* UPDATED: Two columns on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-card {
+        flex-basis: 100%; /* UPDATED: One column on small mobile screens */
+    }
+    
         /* Experience Section */
         .experience {
             background: rgba(255, 255, 255, 0.1);
@@ -474,7 +512,7 @@
 
         <section aria-labelledby="skill-title">
         <div class="skills" id="skills-section"> 
-            <h2 id="skill-title">My Skills</h2>
+            <h2 class="section-title" id="skill-title">My Skills</h2>
             <div class="skill-card">
                 <h3>Technical Skills</h3>
                 <ul>
