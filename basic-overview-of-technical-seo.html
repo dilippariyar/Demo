@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Technical SEO Overview</title>
+</head>
+<body>
+
+    <h1>Basic Overview of Technical SEO</h1>
+    <p>This is the content of my technical SEO overview page.</p>
+    <p>You'll notice the URL in your browser's address bar has changed!</p>
+    <a href="index.html">Go to Home</a>
+    <a href="another-page.html">Go to another page</a>
+
+    <script>
+        // This script attempts to "clean" the URL by removing the .html extension.
+        // It runs once when the page loads.
+
+        // Get the current URL from the browser
+        const currentUrl = window.location.href;
+
+        // Check if the URL ends with '.html'
+        if (currentUrl.endsWith('.html')) {
+            // Get the new path without '.html'
+            const newPath = window.location.pathname.replace(/\.html$/, '');
+
+            // Construct the new URL. We need the origin (e.g., https://dilippariyar.github.io)
+            // and the new path.
+            const newUrl = window.location.origin + newPath;
+
+            // Use history.replaceState() to change the URL in the address bar
+            // without reloading the page.
+            // Parameters: stateObject, title, URL
+            // The stateObject can be null, the title is ignored by most browsers for replaceState,
+            // and the URL is the new URL you want to display.
+            history.replaceState(null, '', newUrl);
+
+            // OPTIONAL: If you want to change the URL AND add it to the browser's history
+            // so the back button works to get back to the .html version (less common for this use case):
+            // history.pushState(null, '', newUrl);
+        }
+
+        // IMPORTANT NOTE: This does NOT make the original .html URL redirect.
+        // It only changes what the user sees in the address bar.
+        // If someone types the "clean" URL directly, it will still result in a 404 error
+        // on GitHub Pages because there's no actual file/folder at that "clean" path.
+
+    </script>
+</body>
+</html>
