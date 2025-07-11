@@ -3,614 +3,896 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dilip Pariyar - Portfolio</title>
-    <style>
-        /* General Reset */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a, #333);
-            color: #fff;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        html {
-            scroll-behavior: smooth; /* For smooth navigation from menu links */
-        }
-
-        /* Container for the portfolio */
-        .portfolio-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            padding-top: 80px; /* Add padding to prevent overlap with fixed menu */
-        }
-
-        /* Hamburger Menu */
-        .hamburger-menu {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001; /* Ensure it's above other content */
-        }
-
-        .menu-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            display: flex; /* For centering icon if needed */
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hamburger-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 24px; /* Width of the icon lines */
-            height: 20px; /* Height of the icon area */
-        }
-
-        .hamburger-icon .bar {
-            display: block;
-            width: 100%;
-            height: 3px; /* Thickness of the lines */
-            background-color: #fff;
-            border-radius: 3px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Hamburger animation to X */
-        .menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg); /* Adjusted for 3px bar height */
-        }
-
-        .menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg); /* Adjusted for 3px bar height */
-        }
-
-        .menu-links {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0; /* Space from button */
-            background: rgba(40, 40, 40, 0.95); /* Darker, slightly transparent background */
-            border-radius: 8px;
-            position: absolute;
-            top: 100%; /* Position below the button */
-            right: 0;
-            width: 220px; /* Width of the dropdown */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-        }
-
-        .menu-links.open {
-            max-height: 500px; /* Adjust if more links are added */
-            padding: 10px 0; /* Vertical padding when open */
-        }
-
-        .menu-links li a {
-            display: block;
-            padding: 12px 20px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .menu-links li a:hover,
-        .menu-links li a:focus { /* Added focus style for accessibility */
-            background-color: #ff0; /* Yellow accent from your theme */
-            color: #333; /* Dark text on yellow */
-        }
-
-
-        /* Profile Image Section (New) */
-        .profile-image-container {
-            text-align: center;
-            margin-bottom: 20px; /* Space below profile image */
-        }
-
-        .profile-picture {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%; /* Circular image */
-            border: 4px solid #fff; /* White border */
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.5); /* Yellow glow, matching theme */
-            object-fit: cover; /* Ensures image covers the area well */
-            animation: fadeInProfile 2s ease-in-out;
-        }
-        
-        @keyframes fadeInProfile { /* Specific fade-in for profile picture */
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-
-        /* Header Section */
-        .header {
-            text-align: center;
-            padding: 40px 20px; /* Adjusted padding due to profile image above */
-            background: linear-gradient(135deg, #ff0099, #493240);
-            border-radius: 15px;
-            margin-bottom: 40px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            margin: 0;
-            animation: textGlow 2s infinite alternate;
-        }
-
-        @keyframes textGlow {
-            0% {
-                text-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0;
-            }
-            100% {
-                text-shadow: 0 0 20px #00f, 0 0 40px #00f, 0 0 60px #00f;
-            }
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            margin: 10px 0 0;
-        }
-
-        /* About Section */
-        .about {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            animation: slideIn 1.5s ease-in-out;
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-         @keyframes fadeIn { /* Added generic fadeIn if used elsewhere */
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-
-        .about h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ff0;
-        }
-
-        .about p {
-            font-size: 1.1rem;
-        }
-
-        /* Skills Section */
-/* Skills Section Container */
-.skills {
-    display: flex; /* Enables Flexbox for arranging children in a row */
-    justify-content: center; /* Centers the skill cards horizontally as a group */
-    align-items: flex-start; /* Aligns items to the start of the cross-axis (top) */
-    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens (for responsiveness) */
-    gap: 20px; /* NEW: Adds space between skill cards */
-    margin-bottom: 40px;
-    padding: 0 20px; /* NEW: Add some horizontal padding to prevent cards from touching edges */
-}
-
-/* Individual Skill Card */
-.skill-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 15px;
-    /* Use flex-basis for responsive column distribution */
-    flex-basis: calc(33.333% - 20px); /* UPDATED: Aims for 3 columns, accounting for gap */
-    max-width: 300px; /* NEW: Optional: Prevent cards from becoming too wide on very large screens */
-    flex-grow: 1; /* NEW: Allows cards to grow and fill available space */
-    margin: 0; /* UPDATED: Remove individual card margins now that gap handles spacing */
-    text-align: center;
-    animation: float 4s infinite ease-in-out;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* NEW: Added subtle border for definition */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* NEW: Enhanced shadow */
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.skill-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px; /* UPDATED: Increased margin for better spacing */
-    color: #00e6ff; /* UPDATED: Changed color for better contrast/theming */
-    text-transform: uppercase; /* NEW: Added for subtle styling */
-}
-
-.skill-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.skill-card ul li {
-    font-size: 1rem;
-    margin: 8px 0; /* UPDATED: Adjusted margin for list items */
-    color: #cbd5e0; /* NEW: Softer text color */
-}
-
-/* Section Title (assuming it's an h2 for "My Skills") */
-/* If your h2 is directly inside the container that has .section-title,
-   you can modify .section-title directly. Otherwise, you might need a
-   specific class for the "My Skills" heading. */
-.section-title { /* Assuming this class is on your "My Skills" h2 */
-    text-align: center; /* UPDATED: Centers the heading */
-    font-size: 2.8rem; /* NEW: Adjusted font size */
-    margin-bottom: 50px; /* NEW: Space below the heading */
-    background: linear-gradient(45deg, #a0dfff, #63b3ed); /* NEW: Example gradient color for headings */
-    -webkit-background-clip: text; /* NEW: For gradient text */
-    background-clip: text; /* NEW: For gradient text */
-    color: transparent; /* NEW: Makes text transparent to show gradient */
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .skill-card {
-        flex-basis: calc(50% - 20px); /* UPDATED: Two columns on tablets */
-    }
-}
-
-@media (max-width: 480px) {
-    .skill-card {
-        flex-basis: 100%; /* UPDATED: One column on small mobile screens */
-    }
+    <title>Complete Accessible SEO Toolkit</title>
     
-        /* Experience Section */
-        .experience {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            animation: slideIn 1.5s ease-in-out; /* Reusing existing animation */
-        }
+        <meta name="description" content="Explore the Search Engine Optimization (SEO) Services offered by Dilip Pariyar, for SEO and Advanced HTML audits .">
+    <meta name="keywords" content="Dilip Pariyar, Digital Marketing Services, Web Accessibility Services, SEO, WCAG, ARIA, E-commerce, Freelance Services, Mumbai">
+    <meta name="author" content="Dilip Pariyar">
+    <meta name="robots" content="index, follow">
 
-        .experience h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ff0; /* Consistent with other section titles */
-        }
+    <link rel="canonical" href="https://dilippariyar.github.io/seo">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-        .experience p {
+    <meta property="og:title" content="Tool - SEO & Web Accessibility | Dilip Pariyar">
+    <meta property="og:description" content="Offering Audit Tools in SEO">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dilippariyar.github.io/seo">
+    <meta property="og:image" content="https://dilippariyar.github.io/seo/logo_og.png">
+    <meta property="og:site_name" content="Dilip Pariyar's SEO Tools ">
+<!-- linking for social media icons -->    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Minimal, high-contrast, accessibility-focused CSS */
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #00e6ff;
+            --secondary-color: #ff00cc;
+            --form-bg-color: #1e1e1e;
+            --border-color: #444;
+            --success-color: #4caf50;
+            --error-color: #f44336;
+            --warning-color: #ff9800;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+        }
+        a {
+            color: var(--primary-color);
+        }
+        h1, h2, h3, h4 {
+            color: #fff;
+            margin-top: 1.5em;
+        }
+        h1 { font-size: 2.5rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 1em; }
+        h2 { font-size: 2rem; color: var(--primary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-top: 3em; }
+        h3 { font-size: 1.5rem; color: var(--secondary-color); margin-top: 2em; }
+        h4 { font-size: 1.2rem; color: #fff; }
+        hr { border: 1px solid var(--border-color); margin: 40px 0; }
+
+        /* Form elements */
+        fieldset {
+            border: 1px solid var(--border-color);
+            padding: 10px 20px 20px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        legend {
+            padding: 0 10px;
+            font-weight: bold;
+            color: var(--primary-color);
             font-size: 1.1rem;
         }
-
-        /* Projects Section (New) */
-        .projects {
-            background: rgba(255, 255, 255, 0.1); /* Consistent styling */
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            animation: slideIn 1.5s ease-in-out; /* Reusing existing animation */
-        }
-
-        .projects h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ff0; /* Consistent section title color */
-        }
-
-        .project-item {
-            background: rgba(255, 255, 255, 0.05); /* Slightly different for depth */
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            /* animation: fadeIn 1.8s ease-in-out; */ /* Optional: item-level animation */
-        }
-
-        .project-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .project-item h3 {
-            font-size: 1.5rem;
-            color: #00f; /* Consistent with skill card titles */
-            margin-bottom: 10px;
-        }
-
-        .project-item p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .project-link {
-            display: inline-block;
-            padding: 8px 18px;
-            background: #ff0; /* Yellow accent */
-            color: #333; /* Dark text for contrast */
-            text-decoration: none;
-            font-size: 1rem;
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
             font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
-        .project-link:hover {
-            background: #ffd700; /* Darker yellow on hover */
-            transform: translateY(-2px);
-        }
-
-
-        /* Download Resume Button */
-        .download-resume {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .download-resume a {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #00f, #ff0);
-            color: #000;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            animation: pulseButton 2s infinite ease-in-out;
-        }
-
-        @keyframes pulseButton {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        /* Footer Section */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .footer p {
+        input[type="text"], input[type="url"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--form-bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             font-size: 1rem;
-            margin: 0 0 10px;
         }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        button.secondary {
+            background-color: #555;
+            color: var(--text-color);
+        }
+        button.utility {
+             background-color: #333;
+             color: var(--text-color);
+             padding: 8px 12px;
+             font-size: 0.9rem;
+             margin-top: 10px;
+        }
+        button:hover, button:focus {
+            opacity: 0.9;
+        }
+        /* Results and Live Region */
+        .output-area {
+            background-color: var(--form-bg-color);
+            border: 1px dashed var(--border-color);
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .live-region {
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+            transition: opacity 0.5s;
+        }
+        .live-region:empty {
+            display: none;
+        }
+        .live-region.success { background-color: var(--success-color); color: #fff; }
+        .live-region.error { background-color: var(--error-color); color: #fff; }
+        .live-region.warning { background-color: var(--warning-color); color: #000; }
+        .char-counter { font-size: 0.9rem; color: #aaa; margin-top: 2px; }
+        .limit-warning { font-size: 0.9rem; color: var(--warning-color); margin-top: 4px; }
+        .dynamic-field-group { padding: 10px; border: 1px solid #333; border-radius: 4px; margin-top: 10px; }
 
+        /* SERP Preview minimal styles */
+        .serp-preview {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            border-radius: 8px;
+        }
+        .serp-preview-url { color: #bdc1c6; font-size: 14px; }
+        .serp-preview-title { color: #8ab4f8; font-size: 20px; font-weight: normal; text-decoration: none; display: block; margin: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .serp-preview-desc { color: #bdc1c6; font-size: 14px; line-height: 1.57; }
+
+        /* Skip link for accessibility */
+        .skip-link { position: absolute; top: -999px; left: 0; background: #fff; color: #000; padding: 10px; z-index: 100; }
+        .skip-link:focus { top: 0; }
+
+        /* Footer from index.html */
+        .main-footer {
+            padding: 50px 20px 30px; background: #12121f;
+            text-align: center; position: relative;
+        }
         .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+            list-style: none; padding: 0; display: flex;
+            justify-content: center; gap: 25px; margin-bottom: 20px;
         }
-
-        .social-icons a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease, color 0.3s ease;
+        .social-icons li a {
+            color: #fff; font-size: 1.8rem; transition: all 0.3s ease;
         }
-
-        .social-icons a:hover {
-            transform: translateY(-5px);
-            color: #ff0;
+        .social-icons li a:hover {
+            transform: scale(1.25); color: #00e6ff;
         }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            .header p {
-                font-size: 1rem;
-            }
-            .profile-picture {
-                width: 120px;
-                height: 120px;
-            }
-            .about h2, .skills h2, .experience h2, .projects h2 {
-                font-size: 1.8rem;
-            }
-            .skill-card {
-                width: calc(50% - 20px); /* Two cards per row */
-            }
-             .portfolio-container {
-                padding-top: 70px; /* Adjust for smaller screens if menu feels too close */
-            }
-            .hamburger-menu {
-                top: 15px;
-                right: 15px;
-            }
-            .menu-toggle {
-                padding: 8px;
-            }
-            .hamburger-icon {
-                width: 20px;
-                height: 18px;
-            }
-             .hamburger-icon .bar {
-                height: 2px;
-            }
-            .menu-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-            .menu-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-
-        }
-         @media (max-width: 480px) {
-            .skill-card {
-                width: 100%; /* One card per row */
-            }
-             .header h1 {
-                font-size: 2rem;
-            }
-             .project-item {
-                padding: 15px;
-            }
-            .project-item h3 {
-                font-size: 1.3rem;
-            }
-         }
+        .copyright { font-size: 0.9rem; color: #aaa; }
 
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav class="hamburger-menu" aria-label="Main Navigation">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="menu-links-main" aria-label="Toggle navigation menu">
-            <span class="hamburger-icon">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </span>
-        </button>
-        <ul class="menu-links" id="menu-links-main">
-            <li><a href="#profile-header">Home</a></li> <li><a href="#about-section">About</a></li>
-            <li><a href="#skills-section">Skills</a></li>
-            <li><a href="#experience-section">Experience</a></li>
-            <li><a href="#projects-section">Projects</a></li>
-            <li><a href="#contact-section">Contact</a></li>
-        </ul>
-    </nav>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header>
+            <h1>Complete Accessible SEO Toolkit</h1>
+            <p>A collection of offline tools for SEO learners and specialists, designed with accessibility as the top priority. All processing happens in your browser; no data is sent to any server.</p>
+        </header>
 
-    <main class="portfolio-container" role="main">
-        <section aria-labelledby="profile-header">
-        <div class="header" id="profile-header"> 
-            <div class="profile-image-container" role="img" aria-label="profile image">
-                <img src="dilip.jpg" alt="Dilip Pariyar's Profile picture" class="profile-picture">
+        <main id="main-content">
+            
+            <section aria-labelledby="meta-gen-heading">
+                <h2 id="meta-gen-heading">Meta, SERP & Social Tag Generator</h2>
+                <p>Create optimal meta tags for search engines and social media. The primary fields below will be used by all other generators unless overridden. Generate tags for each section independently.</p>
+                
+                <form id="meta-form" onsubmit="return false;">
+                    <fieldset>
+                        <legend>Primary Info & SERP Preview</legend>
+                        <label for="meta-title">Title Tag (Recommended: 50-60 characters)</label>
+                        <input type="text" id="meta-title" placeholder="e.g., Accessible SEO Toolkit for Professionals">
+                        <div class="char-counter" id="title-counter">0 characters</div>
+                        <div class="limit-warning" id="title-limit-warning" aria-live="polite"></div>
+                        
+                        <label for="meta-desc">Meta Description (Recommended: 150-160 characters)</label>
+                        <textarea id="meta-desc" placeholder="e.g., A collection of offline, accessible SEO tools..."></textarea>
+                        <div class="char-counter" id="desc-counter">0 characters</div>
+                        <div class="limit-warning" id="desc-limit-warning" aria-live="polite"></div>
+
+                        <label for="meta-canonical">Canonical URL</label>
+                        <input type="url" id="meta-canonical" placeholder="https://example.com/your-page">
+                        
+                         <h4>SERP Snippet Preview</h4>
+                         <div class="serp-preview" aria-live="polite" aria-atomic="true">
+                             <span class="serp-preview-url" id="serp-url-preview">https://example.com/your-page</span>
+                             <a href="#" class="serp-preview-title" id="serp-title-preview" tabindex="-1">Your Page Title Will Appear Here</a>
+                             <p class="serp-preview-desc" id="serp-desc-preview">Your meta description will appear here...</p>
+                         </div>
+                    </fieldset>
+                </form>
+
+                <section aria-labelledby="standard-tags-heading">
+                    <h3 id="standard-tags-heading">Standard & SEO Tags</h3>
+                    <fieldset>
+                        <legend>Standard Tag Inputs</legend>
+                        <p>This generator uses the Title, Description, and Canonical URL from the "Primary Info" form above.</p>
+                        <label for="meta-keywords">Meta Keywords (Comma-separated)</label>
+                        <input type="text" id="meta-keywords" placeholder="SEO, accessibility, tools, WCAG">
+                        <label for="meta-author">Author</label>
+                        <input type="text" id="meta-author" placeholder="Dilip Pariyar">
+                        <label for="meta-robots">Robots Content</label>
+                        <select id="meta-robots">
+                            <option value="index, follow">index, follow</option>
+                            <option value="noindex, nofollow">noindex, nofollow</option>
+                            <option value="index, nofollow">index, nofollow</option>
+                            <option value="noindex, follow">noindex, follow</option>
+                        </select>
+                        
+                        <button type="button" id="generate-standard-tags-btn">Generate & Copy Standard Tags</button>
+                        <button type="button" class="secondary" id="download-standard-tags-btn">Download (.txt)</button>
+                        <pre id="standard-tags-output" class="output-area" aria-live="polite"></pre>
+                    </fieldset>
+                </section>
+
+                <section aria-labelledby="og-tags-heading">
+                   <h3 id="og-tags-heading">Open Graph Tags (Facebook, LinkedIn)</h3>
+                    <fieldset>
+                        <legend>Open Graph Inputs</legend>
+                        <p>Inherits Title, Description, and URL from the Primary Info form unless overridden below.</p>
+                        <label for="og-title">OG Title (if different)</label>
+                        <input type="text" id="og-title" placeholder="A Catchy Title for Social Media">
+                        <label for="og-desc">OG Description (if different)</label>
+                        <textarea id="og-desc" placeholder="A compelling description for social feeds."></textarea>
+                         <label for="og-type">Content Type</label>
+                        <select id="og-type">
+                            <option value="website">website</option>
+                            <option value="article">article</option>
+                            <option value="profile">profile</option>
+                            <option value="book">book</option>
+                        </select>
+                        <label for="og-image">OG Image URL</label>
+                        <input type="url" id="og-image" placeholder="https://example.com/social-image.png">
+                        <label for="og-image-width">OG Image Width (Optional)</label>
+                        <input type="number" id="og-image-width" placeholder="1200">
+                         <label for="og-image-height">OG Image Height (Optional)</label>
+                        <input type="number" id="og-image-height" placeholder="630">
+                        <label for="og-sitename">Site Name</label>
+                        <input type="text" id="og-sitename" placeholder="My Awesome Website">
+                        <label for="og-locale">Locale (e.g., en_US, en_IN)</label>
+                        <input type="text" id="og-locale" placeholder="en_IN">
+
+                        <button type="button" id="generate-og-tags-btn">Generate & Copy OG Tags</button>
+                        <button type="button" class="secondary" id="download-og-tags-btn">Download (.txt)</button>
+                        <pre id="og-tags-output" class="output-area" aria-live="polite"></pre>
+                    </fieldset>
+                </section>
+
+                <section aria-labelledby="twitter-tags-heading">
+                    <h3 id="twitter-tags-heading">Twitter Card Tags</h3>
+                    <fieldset>
+                        <legend>Twitter Card Inputs</legend>
+                        <p>Inherits from Open Graph or Primary Info fields unless overridden below.</p>
+                        <label for="twitter-title">Twitter Title (if different from OG)</label>
+                        <input type="text" id="twitter-title">
+                        <label for="twitter-desc">Twitter Description (if different from OG)</label>
+                        <textarea id="twitter-desc"></textarea>
+                        <label for="twitter-image">Twitter Image URL (if different from OG)</label>
+                        <input type="url" id="twitter-image">
+                        <label for="twitter-card">Card Type</label>
+                        <select id="twitter-card">
+                            <option value="summary_large_image">Summary with Large Image</option>
+                            <option value="summary">Summary</option>
+                            <option value="app">App</option>
+                            <option value="player">Player</option>
+                        </select>
+                        <label for="twitter-creator">Creator's Handle (e.g., @yourhandle)</label>
+                        <input type="text" id="twitter-creator" placeholder="@dilip">
+                        <label for="twitter-site">Site's Handle (e.g., @yourbrand)</label>
+                        <input type="text" id="twitter-site" placeholder="@dilip">
+                        
+                        <button type="button" id="generate-twitter-tags-btn">Generate & Copy Twitter Tags</button>
+                        <button type="button" class="secondary" id="download-twitter-tags-btn">Download (.txt)</button>
+                        <pre id="twitter-tags-output" class="output-area" aria-live="polite"></pre>
+                    </fieldset>
+                </section>
+            </section>
+            
+            <section aria-labelledby="keyword-density-heading">
+                <h2 id="keyword-density-heading">Keyword Density Checker</h2>
+                <p>Paste your content to analyze the frequency of single words and multi-word phrases.</p>
+                <label for="density-input">Content to Analyze</label>
+                <textarea id="density-input" placeholder="Paste your blog post or page copy here..."></textarea>
+                <button type="button" id="analyze-density-btn">Analyze Density</button>
+                <h4>Analysis Results</h4>
+                <div id="density-output" class="output-area" aria-live="polite"></div>
+            </section>
+            
+            <section aria-labelledby="counter-heading">
+                 <h2 id="counter-heading">Word & Character Counter</h2>
+                 <p>A simple tool for live counting of words and characters as you type.</p>
+                 <label for="counter-input">Your Text</label>
+                 <textarea id="counter-input" placeholder="Type or paste text here..."></textarea>
+                 <div id="counter-output" class="char-counter" aria-live="polite">Words: 0 | Characters: 0</div>
+            </section>
+
+            <section aria-labelledby="html-validator-heading">
+                <h2 id="html-validator-heading">Advanced On-Page HTML Validator</h2>
+                <p>Paste your page's full HTML source code to check for key SEO and social tags, heading structure, links, and more.</p>
+                <label for="html-input-validator">Paste Full HTML Code Here</label>
+                <textarea id="html-input-validator" placeholder="<html>...</html>"></textarea>
+                <button type="button" id="validate-html-btn">Validate HTML</button>
+                <h4>Validation Results</h4>
+                <div id="html-validator-output" class="output-area" aria-live="polite"></div>
+            </section>
+                
+            <section aria-labelledby="schema-gen-heading">
+                <h2 id="schema-gen-heading">Schema Markup Generator (JSON-LD)</h2>
+                <p>Fill out the form for the schema type you need to generate the accessible JSON-LD script.</p>
+                <label for="schema-type">Select Schema Type:</label>
+                <select id="schema-type">
+                    <option value="faq">FAQ Page</option>
+                    <option value="person">Person</option>
+                    <option value="article">Article</option>
+                    <option value="localbusiness">Local Business</option>
+                    <option value="product">Product</option>
+                    <option value="breadcrumblist">Breadcrumb List</option>
+                </select>
+
+                <div id="schema-forms-container">
+                    <!-- Schema forms will be injected here by JS -->
                 </div>
-            <h1>Dilip Pariyar</h1>
-            <p>Digital Marketing & Web Accessibility Professional</p>
-        </div>
-        </section>
 
-        <section labelledby="about-title">
-        <div class="about" id="about-section"> 
-            <h2 id="about-title">About Me</h2>
-            <p>
-                I am a passionate digital marketing and web accessibility professional with a Bachelor of Management Studies in Marketing from Shankar Narayan College, Mumbai University. I hold certifications in Fundamentals of Digital Marketing (Google), E-commerce and Digital Marketing (Coursera), and have completed courses in Introduction to Programming and Advanced Excel by Vision Aid. With 5 months of experience in SEO, I bring a blend of technical and digital marketing expertise to the table.
-            </p>
-        </div>
-        </section>
+                <button type="button" id="generate-schema-btn">Generate Schema</button>
+                <button type="button" class="secondary" id="copy-schema-btn">Copy Schema</button>
+                <h4>Generated JSON-LD Schema</h4>
+                <pre id="schema-output" class="output-area" aria-live="polite"></pre>
+            </section>
 
-        <section aria-labelledby="skill-title">
-        <div class="skills" id="skills-section"> 
-            <h2 class="section-title" id="skill-title">My Skills</h2>
-            <div class="skill-card">
-                <h3>Technical Skills</h3>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript (Basics)</li>
-                    <li>Python (Basics)</li>
-                </ul>
-            </div>
-            <dib class="skill-card">
-                <h3>Digital Accessibility</h3>h3>
-                <ul>
-                <li>Web accessibility</li>
-                <li>ARIA</li>
-                <li>WCAG</li>
-                <li>Simantic HTML</li>
-                </ul>
-        </div>
-            <div class="skill-card">
-                <h3>Digital Marketing</h3>
-                <ul>
-                    <li>Advanced SEO</li>
-                    <li>SEM (Search Engine Marketing)</li>
-                    <li>Email Marketing</li>
-                    <li>Social Media Marketing</li>
-                    <li>Content Marketing</li>
-                    <li>Google Analytics</li>
-                </ul>
-            </div>
-        </div>
+            <section aria-labelledby="hreflang-gen-heading">
+                <h2 id="hreflang-gen-heading">Hreflang Tag Generator</h2>
+                <p>Create `hreflang` link tags for international targeting. Add a URL for each language/region variant.</p>
+                <form id="hreflang-form" onsubmit="return false;">
+                    <div id="hreflang-entries">
+                       <div class="dynamic-field-group">
+                            <label for="hreflang-href-1">URL</label><input type="url" id="hreflang-href-1" data-field="href" placeholder="https://example.com/en-gb/page">
+                            <label for="hreflang-lang-1">Language Code</label><input type="text" id="hreflang-lang-1" data-field="lang" placeholder="en">
+                            <label for="hreflang-region-1">Region Code (Optional)</label><input type="text" id="hreflang-region-1" data-field="region" placeholder="GB">
+                       </div>
+                    </div>
+                </form>
+                <button type="button" class="utility" id="add-hreflang-btn">Add Another URL</button>
+                <button type="button" id="generate-hreflang-btn">Generate Hreflang Tags</button>
+                <h4>Generated HTML Link Tags</h4>
+                <pre id="hreflang-output" class="output-area" aria-live="polite"></pre>
+            </section>
+            
+            <section aria-labelledby="robots-gen-heading">
+                <h2 id="robots-gen-heading">Robots.txt Generator</h2>
+                <p>Easily create a robots.txt file to guide search engine crawlers.</p>
+                <form id="robots-form" onsubmit="return false;">
+                    <label for="robots-user-agent">User-agent</label><input type="text" id="robots-user-agent" value="*">
+                    <label for="robots-disallow">Disallow (one path per line)</label><textarea id="robots-disallow" placeholder="/admin&#10;/private/"></textarea>
+                    <label for="robots-allow">Allow (one path per line)</label><textarea id="robots-allow" placeholder="/public/"></textarea>
+                    <label for="robots-sitemap">Sitemap URL (optional)</label><input type="url" id="robots-sitemap" placeholder="https://example.com/sitemap.xml">
+                </form>
+                <button type="button" id="generate-robots-btn">Generate robots.txt</button>
+                <button type="button" class="secondary" id="download-robots-btn">Download robots.txt</button>
+                <h4>Generated robots.txt File</h4>
+                <pre id="robots-output" class="output-area" aria-live="polite"></pre>
+            </section>
+            
+            <section aria-labelledby="sitemap-gen-heading">
+                <h2 id="sitemap-gen-heading">Sitemap.xml Generator</h2>
+                <p>Paste a list of your website's URLs (one per line) to generate a basic XML sitemap.</p>
+                <label for="sitemap-urls">Enter URLs</label>
+                <textarea id="sitemap-urls" placeholder="https://example.com/&#10;https://example.com/about"></textarea>
+                <button type="button" id="generate-sitemap-btn">Generate sitemap.xml</button>
+                <button type="button" class="secondary" id="download-sitemap-btn">Download sitemap.xml</button>
+                <h4>Generated sitemap.xml File</h4>
+                <pre id="sitemap-output" class="output-area" aria-live="polite"></pre>
+            </section>
+            
+            <div id="live-region-global" class="live-region" aria-live="assertive" role="alert"></div>
+        </main>
+    </div>
 
-        <div class="experience" id="experience-section"> <h2>Experience</h2>
-            <p>
-                <strong>SEO Intern</strong> - 5 months of hands-on experience in optimizing websites for search engines, conducting keyword research, and improving organic search rankings.
-            </p>
+
+    <footer class="main-footer" id="contact-footer" role="contentinfo">
+        <div class="footer-content">
+            <ul class="social-icons" aria-label="Social media links">
+                <li><a href="mailto:dilipPariyar06@gmail.com" aria-label="Send an email to Dilip Pariyar"><i class="fas fa-envelope"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/dilip-pariyar" target="_blank" rel="noopener noreferrer" aria-label="Dilip Pariyar's LinkedIn Profile"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="tel:+918657213745" aria-label="Call Dilip Pariyar"><i class="fas fa-phone" aria-hidden="true"></i></a></li>
+                <li><a href="https://github.com/dilippariyar" target="_blank" rel="noopener noreferrer" aria-label="Dilip Pariyar's GitHub Profile"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <p class="copyright">&copy; <span id="currentYear"></span> Dilip Pariyar. All rights reserved.</p>
         </div>
-        </section>
+    </footer>
 
-        <section aria-labelledby="project-title">
-        <div class="projects" id="projects-section"> 
-            <h2 id="project-title">My Projects</h2>
-            <div class="project-item">
-                <h3>Portfolio Website</h3>
-                <p>Designed and developed this personal portfolio website to showcase my skills, experience, and projects. Focused on a clean, responsive design with subtle animations.</p>
-                <a href="#" target="_blank" class="project-link" aria-label="View Portfolio Website Project">View Details</a>
-            </div>
-            <div class="project-item">
-                <h3>E-commerce SEO Strategy</h3>
-                <p>Developed a comprehensive SEO strategy for a mock e-commerce client, including keyword research, on-page optimization, and content planning to improve organic visibility.</p>
-                <a href="#" target="_blank" class="project-link" aria-label="View E-commerce SEO Strategy Project">View Case Study</a>
-            </div>
-            <div class="project-item">
-                <h3>Digital Marketing Campaign Analysis</h3>
-                <p>Analyzed the performance of a sample digital marketing campaign using mock data, identifying key metrics, trends, and providing recommendations for future improvements.</p>
-                <a href="#" target="_blank" class="project-link" aria-label="View Campaign Analysis Project">Read Analysis</a>
-            </div>
-        </div>
-        </section>
-    </main>
-
-        <section aria-labelledby="resume-section">
-        <div class="download-resume" id="resume-section">
-            <a href="Dilip_Resume.pdf" download="Dilip_Pariyar_Resume.pdf">Download Resume</a>
-            <a href="basic-overview-of-technical-seo.html" aria-label="technical seo by JavaScript"></a>
-            </div>
-        </section>
-       
-        <footer class="footer" id="contact-section"> 
-            <p>Contact: dilippariyar06@gmail.com | Phone: +91 98765 43210</p>
-            <div class="social-icons" role="region" aria-label="social media links">
-                <a href="mailto:dilippariyar06@gmail.com" target="_blank" title="Email" aria-label="Send an email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+919876543210" target="_blank" title="Phone" aria-label="Call Dilip Pariyar"><i class="fas fa-phone"></i></a>
-                <a href="https://www.linkedin.com/in/dilip-pariyar" target="_blank" title="LinkedIn" aria-label="Dilip Pariyar's LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.github.com/dilippariyar" target="_blank" title="GitHub" aria-label="Dilip Pariyar's GitHub Profile"><i class="fab fa-github"></i></a>
-                </div>
-        </footer>
-
-<!-- Added internal javascript -->
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const menuLinks = document.getElementById('menu-links-main'); // Using ID selector
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- UTILITY FUNCTIONS ---
+        const globalLiveRegion = document.getElementById('live-region-global');
+        function notify(message, type = 'success') {
+            globalLiveRegion.textContent = message;
+            globalLiveRegion.className = `live-region ${type}`;
+            setTimeout(() => { globalLiveRegion.textContent = ''; globalLiveRegion.className = 'live-region'; }, 5000);
+        }
+        function copyToClipboard(text, successMessage) {
+            if (!text || !text.trim()) { notify('Nothing generated to copy.', 'error'); return; }
+            navigator.clipboard.writeText(text).then(() => { notify(successMessage); }).catch(err => { notify('Failed to copy text.', 'error'); });
+        }
+        function downloadFile(content, filename, mimeType) {
+            if (!content || !content.trim()) { notify('Nothing generated to download.', 'error'); return; }
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            notify(`${filename} downloaded.`);
+        }
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') return "";
+            return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
 
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            menuLinks.classList.toggle('open');
+        // --- META TAGS (COMPLETE) ---
+        (function setupMetaGenerator() {
+            const metaTitleInput = document.getElementById('meta-title');
+            const metaDescInput = document.getElementById('meta-desc');
+            const canonicalUrlInput = document.getElementById('meta-canonical');
+            const serpUrlPreview = document.getElementById('serp-url-preview');
+            const serpTitlePreview = document.getElementById('serp-title-preview');
+            const serpDescPreview = document.getElementById('serp-desc-preview');
+            const titleCounter = document.getElementById('title-counter');
+            const descCounter = document.getElementById('desc-counter');
+            const titleLimitWarning = document.getElementById('title-limit-warning');
+            const descLimitWarning = document.getElementById('desc-limit-warning');
+            
+            const TITLE_LIMIT = 60;
+            const DESC_LIMIT = 160;
+
+            function updateSerpPreview() {
+                const title = metaTitleInput.value.trim() || "Your Page Title Will Appear Here";
+                const desc = metaDescInput.value.trim() || "Your meta description will appear here...";
+                const url = canonicalUrlInput.value.trim() || 'https://example.com/your-page';
+                serpTitlePreview.textContent = title.length > TITLE_LIMIT ? title.substring(0, TITLE_LIMIT) + '...' : title;
+                serpDescPreview.textContent = desc.length > DESC_LIMIT ? desc.substring(0, DESC_LIMIT) + '...' : desc;
+                serpUrlPreview.textContent = url;
+            }
+
+            metaTitleInput.addEventListener('input', () => {
+                const len = metaTitleInput.value.length;
+                titleCounter.textContent = `${len} characters`;
+                if (len > TITLE_LIMIT) {
+                    titleCounter.style.color = 'var(--warning-color)';
+                    titleLimitWarning.textContent = `Warning: Titles over ${TITLE_LIMIT} characters may be cut off in search results.`;
+                } else {
+                    titleCounter.style.color = '';
+                    titleLimitWarning.textContent = '';
+                }
+                updateSerpPreview();
+            });
+
+            metaDescInput.addEventListener('input', () => {
+                const len = metaDescInput.value.length;
+                descCounter.textContent = `${len} characters`;
+                if (len > DESC_LIMIT) {
+                    descCounter.style.color = 'var(--warning-color)';
+                    descLimitWarning.textContent = `Warning: Descriptions over ${DESC_LIMIT} characters may be cut off in search results.`;
+                } else {
+                    descCounter.style.color = '';
+                    descLimitWarning.textContent = '';
+                }
+                updateSerpPreview();
+            });
+
+            canonicalUrlInput.addEventListener('input', updateSerpPreview);
+            updateSerpPreview();
+
+            const standardTagsOutput = document.getElementById('standard-tags-output');
+            function generateStandardTags() {
+                let html = '';
+                const fields = {
+                    title: escapeHtml(metaTitleInput.value.trim()),
+                    description: escapeHtml(metaDescInput.value.trim()),
+                    keywords: escapeHtml(document.getElementById('meta-keywords').value.trim()),
+                    author: escapeHtml(document.getElementById('meta-author').value.trim()),
+                    robots: escapeHtml(document.getElementById('meta-robots').value.trim()),
+                    canonical: escapeHtml(canonicalUrlInput.value.trim())
+                };
+                if (fields.title) html += `<title>${fields.title}</title>\n`;
+                if (fields.description) html += `<meta name="description" content="${fields.description}">\n`;
+                if (fields.keywords) html += `<meta name="keywords" content="${fields.keywords}">\n`;
+                if (fields.author) html += `<meta name="author" content="${fields.author}">\n`;
+                if (fields.robots) html += `<meta name="robots" content="${fields.robots}">\n`;
+                if (fields.canonical) html += `<link rel="canonical" href="${fields.canonical}">\n`;
+                standardTagsOutput.textContent = html;
+                return html;
+            }
+            document.getElementById('generate-standard-tags-btn').addEventListener('click', () => copyToClipboard(generateStandardTags(), 'Standard tags copied.'));
+            document.getElementById('download-standard-tags-btn').addEventListener('click', () => downloadFile(generateStandardTags(), 'standard-tags.txt', 'text/plain'));
+
+            const ogTagsOutput = document.getElementById('og-tags-output');
+            function generateOgTags() {
+                let html = '';
+                const fields = {
+                    title: escapeHtml(document.getElementById('og-title').value.trim()) || escapeHtml(metaTitleInput.value.trim()),
+                    description: escapeHtml(document.getElementById('og-desc').value.trim()) || escapeHtml(metaDescInput.value.trim()),
+                    url: escapeHtml(canonicalUrlInput.value.trim()),
+                    type: escapeHtml(document.getElementById('og-type').value.trim()),
+                    image: escapeHtml(document.getElementById('og-image').value.trim()),
+                    imageWidth: escapeHtml(document.getElementById('og-image-width').value.trim()),
+                    imageHeight: escapeHtml(document.getElementById('og-image-height').value.trim()),
+                    siteName: escapeHtml(document.getElementById('og-sitename').value.trim()),
+                    locale: escapeHtml(document.getElementById('og-locale').value.trim())
+                };
+                if (fields.title) html += `<meta property="og:title" content="${fields.title}">\n`;
+                if (fields.description) html += `<meta property="og:description" content="${fields.description}">\n`;
+                if (fields.type) html += `<meta property="og:type" content="${fields.type}">\n`;
+                if (fields.url) html += `<meta property="og:url" content="${fields.url}">\n`;
+                if (fields.image) {
+                    html += `<meta property="og:image" content="${fields.image}">\n`;
+                    if (fields.imageWidth) html += `<meta property="og:image:width" content="${fields.imageWidth}">\n`;
+                    if (fields.imageHeight) html += `<meta property="og:image:height" content="${fields.imageHeight}">\n`;
+                }
+                if (fields.siteName) html += `<meta property="og:site_name" content="${fields.siteName}">\n`;
+                if (fields.locale) html += `<meta property="og:locale" content="${fields.locale}">\n`;
+                ogTagsOutput.textContent = html;
+                return html;
+            }
+            document.getElementById('generate-og-tags-btn').addEventListener('click', () => copyToClipboard(generateOgTags(), 'Open Graph tags copied.'));
+            document.getElementById('download-og-tags-btn').addEventListener('click', () => downloadFile(generateOgTags(), 'opengraph-tags.txt', 'text/plain'));
+
+            const twitterTagsOutput = document.getElementById('twitter-tags-output');
+            function generateTwitterTags() {
+                let html = '';
+                const fields = {
+                    title: escapeHtml(document.getElementById('twitter-title').value.trim()) || escapeHtml(document.getElementById('og-title').value.trim()) || escapeHtml(metaTitleInput.value.trim()),
+                    description: escapeHtml(document.getElementById('twitter-desc').value.trim()) || escapeHtml(document.getElementById('og-desc').value.trim()) || escapeHtml(metaDescInput.value.trim()),
+                    image: escapeHtml(document.getElementById('twitter-image').value.trim()) || escapeHtml(document.getElementById('og-image').value.trim()),
+                    card: escapeHtml(document.getElementById('twitter-card').value.trim()),
+                    creator: escapeHtml(document.getElementById('twitter-creator').value.trim()),
+                    site: escapeHtml(document.getElementById('twitter-site').value.trim())
+                };
+                if (fields.card) html += `<meta name="twitter:card" content="${fields.card}">\n`;
+                if (fields.title) html += `<meta name="twitter:title" content="${fields.title}">\n`;
+                if (fields.description) html += `<meta name="twitter:description" content="${fields.description}">\n`;
+                if (fields.image) html += `<meta name="twitter:image" content="${fields.image}">\n`;
+                if (fields.creator) html += `<meta name="twitter:creator" content="${fields.creator}">\n`;
+                if (fields.site) html += `<meta name="twitter:site" content="${fields.site}">\n`;
+                twitterTagsOutput.textContent = html;
+                return html;
+            }
+            document.getElementById('generate-twitter-tags-btn').addEventListener('click', () => copyToClipboard(generateTwitterTags(), 'Twitter Card tags copied.'));
+            document.getElementById('download-twitter-tags-btn').addEventListener('click', () => downloadFile(generateTwitterTags(), 'twitter-tags.txt', 'text/plain'));
+        })();
+        
+        // --- ON-PAGE & CONTENT TOOLS ---
+        document.getElementById('analyze-density-btn').addEventListener('click', () => {
+            const text = document.getElementById('density-input').value;
+            if (!text.trim()) return notify('Please enter text to analyze.', 'error');
+            const words = text.toLowerCase().replace(/[^\w\s']/g, "").match(/\S+/g) || [];
+            const getNgrams = (n) => {
+                const ngrams = new Map();
+                for (let i = 0; i <= words.length - n; i++) {
+                    const ngram = words.slice(i, i + n).join(' ');
+                    ngrams.set(ngram, (ngrams.get(ngram) || 0) + 1);
+                }
+                return ngrams;
+            };
+            const formatResults = (ngrams, title) => {
+                if (ngrams.size === 0) return `<h4>${title}</h4>\n<p>(No phrases of this length found)</p>\n`;
+                let resultString = `<h4>${title}</h4>\n<ul>`;
+                const sorted = [...ngrams.entries()].sort((a, b) => b[1] - a[1]).slice(0, 20);
+                sorted.forEach(([phrase, count]) => { resultString += `<li>"${phrase}": ${count}</li>`; });
+                return resultString + '</ul>';
+            };
+            document.getElementById('density-output').innerHTML = formatResults(getNgrams(1), '1-Word Phrases') + formatResults(getNgrams(2), '2-Word Phrases') + formatResults(getNgrams(3), '3-Word Phrases');
+            notify('Keyword density analysis complete.');
+        });
+        
+        document.getElementById('counter-input').addEventListener('input', (e) => {
+            const text = e.target.value;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            document.getElementById('counter-output').textContent = `Words: ${words} | Characters: ${text.length}`;
         });
 
-        // Close menu when a link is clicked
-        menuLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                // Check if the menu is open before trying to close it
-                if (menuLinks.classList.contains('open')) {
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuLinks.classList.remove('open');
+        // --- ADVANCED HTML VALIDATOR ---
+        document.getElementById('validate-html-btn').addEventListener('click', () => {
+            const htmlString = document.getElementById('html-input-validator').value;
+            if (!htmlString.trim()) return notify('Please paste HTML code to validate.', 'error');
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            const outputDiv = document.getElementById('html-validator-output');
+            outputDiv.innerHTML = ''; // Clear previous results
+            let issuesFound = 0;
+
+            const createResultSection = (title) => {
+                const h4 = document.createElement('h4');
+                h4.textContent = title;
+                outputDiv.appendChild(h4);
+                const ul = document.createElement('ul');
+                outputDiv.appendChild(ul);
+                return ul;
+            };
+
+            const addResultItem = (list, text, isError = false) => {
+                const li = document.createElement('li');
+                li.textContent = text;
+                if(isError) {
+                    li.style.color = 'var(--error-color)';
+                    issuesFound++;
+                } else {
+                    li.style.color = 'var(--success-color)';
+                }
+                list.appendChild(li);
+            };
+
+            // H1 Check
+            const h1List = createResultSection('H1 Tag Status');
+            const h1s = doc.querySelectorAll('h1');
+            if (h1s.length === 0) addResultItem(h1List, 'ERROR: No <h1> tag found.', true);
+            else if (h1s.length > 1) addResultItem(h1List, `ERROR: Found ${h1s.length} <h1> tags.`, true);
+            else addResultItem(h1List, 'SUCCESS: Exactly one <h1> tag found.');
+
+            // Meta Tags Check
+            const metaList = createResultSection('Meta Tag Check');
+            const titleTag = doc.querySelector('title');
+            if (titleTag && titleTag.textContent.trim()) addResultItem(metaList, 'SUCCESS: Title tag is present.');
+            else addResultItem(metaList, 'ERROR: Missing or empty <title> tag.', true);
+            
+            const descTag = doc.querySelector('meta[name="description"]');
+            if (descTag && descTag.content && descTag.content.trim()) addResultItem(metaList, 'SUCCESS: Meta description is present.');
+            else addResultItem(metaList, 'ERROR: Missing meta description.', true);
+
+            const canonicalTag = doc.querySelector('link[rel="canonical"]');
+            if (canonicalTag) addResultItem(metaList, `SUCCESS: Canonical tag found pointing to: ${canonicalTag.href}`);
+            else addResultItem(metaList, 'WARNING: Missing canonical tag.', true);
+
+            // Social Tags Check
+            const socialList = createResultSection('Social Tags Check');
+            if(doc.querySelector('meta[property="og:title"]')) addResultItem(socialList, 'SUCCESS: og:title is present.'); else addResultItem(socialList, 'ERROR: Missing og:title tag.', true);
+            if(doc.querySelector('meta[property="og:description"]')) addResultItem(socialList, 'SUCCESS: og:description is present.'); else addResultItem(socialList, 'ERROR: Missing og:description tag.', true);
+            if(doc.querySelector('meta[property="og:image"]')) addResultItem(socialList, 'SUCCESS: og:image is present.'); else addResultItem(socialList, 'ERROR: Missing og:image tag.', true);
+            if(doc.querySelector('meta[name="twitter:card"]')) addResultItem(socialList, 'SUCCESS: twitter:card is present.'); else addResultItem(socialList, 'ERROR: Missing twitter:card tag.', true);
+
+            // Heading Structure Check
+            const headingList = createResultSection('Heading Structure & Skipped Level Check');
+            const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            if (headings.length === 0) { addResultItem(headingList, 'No heading tags found.'); }
+            else {
+                let lastLevel = 0;
+                headings.forEach(h => {
+                    const currentLevel = parseInt(h.tagName.substring(1));
+                    const li = document.createElement('li');
+                    li.style.marginLeft = `${(currentLevel - 1) * 20}px`;
+                    li.textContent = `${h.tagName}: ${h.textContent.trim()}`;
+                    if (lastLevel > 0 && currentLevel > lastLevel + 1) {
+                        li.style.color = 'var(--warning-color)';
+                        li.textContent += ' (WARNING: Skipped level)';
+                    }
+                    headingList.appendChild(li);
+                    lastLevel = currentLevel;
+                });
+            }
+
+            // Image Alt Attributes Check
+            const altList = createResultSection('Image Alt Attributes');
+            const images = doc.querySelectorAll('img');
+            if (images.length === 0) { addResultItem(altList, 'No <img> tags found.'); }
+            else {
+                let missingAlts = 0;
+                images.forEach((img, index) => {
+                    if (!img.hasAttribute('alt') || img.getAttribute('alt').trim() === '') {
+                        addResultItem(altList, `ERROR: Image missing alt text. (src: ${img.getAttribute('src') || `image ${index + 1}`})`, true);
+                        missingAlts++;
+                    }
+                });
+                if (missingAlts === 0) addResultItem(altList, 'SUCCESS: All images appear to have an alt attribute.');
+            }
+
+            // Link Analysis
+            const linkList = createResultSection('Link Analysis');
+            let siteOrigin = '';
+            if(canonicalTag && canonicalTag.href) { try { siteOrigin = new URL(canonicalTag.href).origin; } catch(e){} }
+            const internalLinks = new Set(), externalLinks = new Set();
+            doc.querySelectorAll('a[href]').forEach(link => {
+                try {
+                    const absUrl = new URL(link.href, siteOrigin || 'http://example.com').href;
+                    if (absUrl.startsWith('http')) {
+                        if(siteOrigin && absUrl.startsWith(siteOrigin)) { internalLinks.add(absUrl); }
+                        else { externalLinks.add(absUrl); }
+                    }
+                } catch(e) {}
+            });
+            addResultItem(linkList, `Found ${internalLinks.size} internal links.`);
+            addResultItem(linkList, `Found ${externalLinks.size} external links.`);
+            
+            if (externalLinks.size > 0) {
+                const externalDomains = new Set();
+                externalLinks.forEach(link => {
+                    try {
+                        const hostname = new URL(link).hostname;
+                        externalDomains.add(hostname.replace(/^www\./, ''));
+                    } catch(e) {}
+                });
+
+                if (externalDomains.size > 0) {
+                    const externalDomainsList = createResultSection('External Domains Linked To');
+                    [...externalDomains].sort().forEach(domain => {
+                        const domainItem = document.createElement('li');
+                        domainItem.textContent = domain;
+                        externalDomainsList.appendChild(domainItem);
+                    });
+                }
+            }
+            
+            // iFrame Check
+            const iframeList = createResultSection('iFrame Check');
+            const iframes = doc.querySelectorAll('iframe');
+            if (iframes.length > 0) addResultItem(iframeList, `WARNING: Found ${iframes.length} iframe(s).`, true);
+            else addResultItem(iframeList, 'SUCCESS: No iframes found.');
+            
+            notify(`Validation complete. Found ${issuesFound} potential issue(s).`);
+        });
+
+        // --- TECHNICAL SEO TOOLS ---
+        (function setupTechnicalTools() {
+            // Schema Generator
+            const schemaFormsContainer = document.getElementById('schema-forms-container');
+            const schemaTemplates = {
+                person: `<fieldset><legend>Person</legend><label>Name</label><input type="text" data-schema="name" placeholder="Dilip Pariyar"><label>Website URL</label><input type="url" data-schema="url" placeholder="https://example.com"><label>Job Title</label><input type="text" data-schema="jobTitle" placeholder="SEO Specialist"><label>Social Profile URL</label><input type="url" data-schema="sameAs" placeholder="https://linkedin.com/in/yourprofile"></fieldset>`,
+                article: `<fieldset><legend>Article</legend><label>Headline</label><input type="text" data-schema="headline"><label>Author Name</label><input type="text" data-schema="authorName"><label>Publisher Name</label><input type="text" data-schema="publisherName"><label>Image URL</label><input type="url" data-schema="image"></fieldset>`,
+                localbusiness: `<fieldset><legend>Local Business</legend><label>Business Name</label><input type="text" data-schema="name"><label>Street Address</label><input type="text" data-schema="streetAddress"><label>City</label><input type="text" data-schema="addressLocality"><label>Region</label><input type="text" data-schema="addressRegion"><label>Postal Code</label><input type="text" data-schema="postalCode"><label>Phone Number</label><input type="text" data-schema="telephone"><label>Price Range</label><input type="text" data-schema="priceRange" placeholder="e.g., $$"></fieldset>`,
+                product: `<fieldset><legend>Product</legend><label>Product Name</label><input type="text" data-schema="name"><label>Image URL</label><input type="url" data-schema="image"><label>Description</label><textarea data-schema="description"></textarea><label>Brand Name</label><input type="text" data-schema="brandName"><label>Price</label><input type="number" data-schema="price"><label>Currency</label><input type="text" data-schema="priceCurrency" placeholder="INR"></fieldset>`,
+                faq: `<fieldset><legend>FAQ</legend><div id="faq-entries"><div class="dynamic-field-group"><label for="faq-q-1">Question 1</label><input id="faq-q-1" type="text" data-field="question"><label for="faq-a-1">Answer 1</label><textarea id="faq-a-1" data-field="answer"></textarea></div></div><button type="button" class="utility" id="add-faq-btn">Add FAQ</button></fieldset>`,
+                breadcrumblist: `<fieldset><legend>Breadcrumbs</legend><div id="breadcrumb-entries"><div class="dynamic-field-group"><label for="bc-name-1">Level 1 Name</label><input id="bc-name-1" type="text" data-field="name" placeholder="Home"><label for="bc-url-1">Level 1 URL</label><input id="bc-url-1" type="url" data-field="url" placeholder="https://example.com"></div></div><button type="button" class="utility" id="add-breadcrumb-btn">Add Level</button></fieldset>`
+            };
+            
+            function renderSchemaForm() {
+                const type = document.getElementById('schema-type').value;
+                schemaFormsContainer.innerHTML = schemaTemplates[type] || '';
+                if (type === 'faq') document.getElementById('add-faq-btn').addEventListener('click', addFaqEntry);
+                if (type === 'breadcrumblist') document.getElementById('add-breadcrumb-btn').addEventListener('click', addBreadcrumbEntry);
+            }
+            function addFaqEntry() { 
+                const container = document.getElementById('faq-entries');
+                const count = container.children.length + 1;
+                const newEntry = document.createElement('div');
+                newEntry.className = 'dynamic-field-group';
+                newEntry.innerHTML = `<label for="faq-q-${count}">Question ${count}</label><input id="faq-q-${count}" type="text" data-field="question"><label for="faq-a-${count}">Answer ${count}</label><textarea id="faq-a-${count}" data-field="answer"></textarea><button type="button" class="utility secondary" onclick="this.parentElement.remove()">Remove</button>`;
+                container.appendChild(newEntry);
+            }
+            function addBreadcrumbEntry() {
+                const container = document.getElementById('breadcrumb-entries');
+                const count = container.children.length + 1;
+                const newEntry = document.createElement('div');
+                newEntry.className = 'dynamic-field-group';
+                newEntry.innerHTML = `<label for="bc-name-${count}">Level ${count} Name</label><input id="bc-name-${count}" type="text" data-field="name"><label for="bc-url-${count}">Level ${count} URL</label><input id="bc-url-${count}" type="url" data-field="url"><button type="button" class="utility secondary" onclick="this.parentElement.remove()">Remove</button>`;
+                container.appendChild(newEntry);
+            }
+            document.getElementById('schema-type').addEventListener('change', renderSchemaForm);
+            renderSchemaForm();
+
+            document.getElementById('generate-schema-btn').addEventListener('click', () => {
+                const type = document.getElementById('schema-type').value;
+                let schema = {};
+                const form = schemaFormsContainer.querySelector('fieldset');
+                const getVal = (selector) => form.querySelector(`[data-schema="${selector}"]`)?.value.trim() || '';
+
+                try {
+                    if (type === 'faq') {
+                        schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": []};
+                        form.querySelectorAll('.dynamic-field-group').forEach(group => {
+                            const q = group.querySelector('[data-field="question"]').value.trim();
+                            const a = group.querySelector('[data-field="answer"]').value.trim();
+                            if (q && a) schema.mainEntity.push({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}});
+                        });
+                        if (schema.mainEntity.length === 0) throw new Error("Please fill at least one FAQ.");
+                    } else if (type === 'person') {
+                        if (!getVal('name')) throw new Error("Person name is required.");
+                        schema = {"@context": "https://schema.org", "@type": "Person", "name": getVal('name'), "url": getVal('url'), "jobTitle": getVal('jobTitle'), "sameAs": getVal('sameAs')};
+                    } else if (type === 'article') {
+                        if (!getVal('headline') || !getVal('authorName')) throw new Error("Article headline and author are required.");
+                        schema = {"@context": "https://schema.org", "@type": "Article", "headline": getVal('headline'), "author": {"@type": "Person", "name": getVal('authorName')}, "publisher": {"@type": "Organization", "name": getVal('publisherName')}, "image": getVal('image')};
+                    } else if (type === 'localbusiness') {
+                        if (!getVal('name')) throw new Error("Business name is required.");
+                        schema = {"@context": "https://schema.org", "@type": "LocalBusiness", "name": getVal('name'), "priceRange": getVal('priceRange'), "telephone": getVal('telephone'), "address": {"@type": "PostalAddress", "streetAddress": getVal('streetAddress'), "addressLocality": getVal('addressLocality'), "addressRegion": getVal('addressRegion'), "postalCode": getVal('postalCode')}};
+                    } else if (type === 'product') {
+                         if (!getVal('name')) throw new Error("Product name is required.");
+                         schema = {"@context": "https://schema.org", "@type": "Product", "name": getVal('name'), "image": getVal('image'), "description": getVal('description'), "brand": {"@type": "Brand", "name": getVal('brandName')}, "offers": {"@type": "Offer", "price": getVal('price'), "priceCurrency": getVal('priceCurrency')}};
+                    } else if (type === 'breadcrumblist') {
+                        schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": []};
+                        form.querySelectorAll('.dynamic-field-group').forEach((group, index) => {
+                            const name = group.querySelector('[data-field="name"]').value.trim();
+                            const url = group.querySelector('[data-field="url"]').value.trim();
+                            if(name && url) schema.itemListElement.push({"@type": "ListItem", "position": index + 1, "name": name, "item": url});
+                        });
+                        if (schema.itemListElement.length === 0) throw new Error("Please fill at least one breadcrumb level.");
+                    }
+                    
+                    const outputString = `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n<\/script>`;
+                    document.getElementById('schema-output').textContent = outputString;
+                    notify(`${type} schema generated successfully.`);
+                } catch (error) {
+                    notify(error.message, 'error');
                 }
             });
-        });
+            document.getElementById('copy-schema-btn').addEventListener('click', () => copyToClipboard(document.getElementById('schema-output').textContent, 'Schema copied to clipboard.'));
+            
+            // Hreflang Generator
+            document.getElementById('add-hreflang-btn').addEventListener('click', () => {
+                 const container = document.getElementById('hreflang-entries');
+                 const count = container.children.length + 1;
+                 const newEntry = document.createElement('div');
+                 newEntry.className = 'dynamic-field-group';
+                 newEntry.innerHTML = `<label for="hreflang-href-${count}">URL</label><input id="hreflang-href-${count}" type="url" data-field="href"><label for="hreflang-lang-${count}">Language Code</label><input id="hreflang-lang-${count}" type="text" data-field="lang"><label for="hreflang-region-${count}">Region Code (Optional)</label><input id="hreflang-region-${count}" type="text" data-field="region"><button type="button" class="utility secondary" onclick="this.parentElement.remove()">Remove</button>`;
+                 container.appendChild(newEntry);
+            });
+            document.getElementById('generate-hreflang-btn').addEventListener('click', () => {
+                const entries = document.querySelectorAll('#hreflang-entries .dynamic-field-group');
+                let output = '';
+                entries.forEach(entry => {
+                    const href = escapeHtml(entry.querySelector('[data-field="href"]').value.trim());
+                    const lang = escapeHtml(entry.querySelector('[data-field="lang"]').value.trim().toLowerCase());
+                    const region = escapeHtml(entry.querySelector('[data-field="region"]').value.trim().toUpperCase());
+                    if (href && lang) {
+                        output += `<link rel="alternate" hreflang="${region ? lang + '-' + region : lang}" href="${href}">\n`;
+                    }
+                });
+                document.getElementById('hreflang-output').textContent = output;
+                notify('Hreflang tags generated.');
+            });
+
+            // Robots.txt & Sitemap Generators
+            document.getElementById('generate-robots-btn').addEventListener('click', () => {
+                let content = '';
+                const userAgent = document.getElementById('robots-user-agent').value.trim();
+                const disallow = document.getElementById('robots-disallow').value.split('\n');
+                const allow = document.getElementById('robots-allow').value.split('\n');
+                const sitemap = document.getElementById('robots-sitemap').value.trim();
+                content += `User-agent: ${userAgent || '*'}\n`;
+                disallow.forEach(line => { if (line.trim()) content += `Disallow: ${line.trim()}\n`; });
+                allow.forEach(line => { if (line.trim()) content += `Allow: ${line.trim()}\n`; });
+                if (sitemap) content += `\nSitemap: ${sitemap}\n`;
+                document.getElementById('robots-output').textContent = content;
+                notify('robots.txt generated.');
+            });
+            document.getElementById('download-robots-btn').addEventListener('click', () => downloadFile(document.getElementById('robots-output').textContent, 'robots.txt', 'text/plain'));
+            
+            document.getElementById('generate-sitemap-btn').addEventListener('click', () => {
+                const urls = document.getElementById('sitemap-urls').value.split('\n').filter(url => url.trim() !== '');
+                if (urls.length === 0) return notify('Please enter at least one URL.', 'error');
+                let content = '<?xml version="1.0" encoding="UTF-8"?>\n';
+                content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+                urls.forEach(url => {
+                    content += '  <url>\n';
+                    content += `    <loc>${escapeHtml(url.trim())}</loc>\n`;
+                    content += '  </url>\n';
+                });
+                content += '</urlset>';
+                document.getElementById('sitemap-output').textContent = content;
+                notify('sitemap.xml generated.');
+            });
+            document.getElementById('download-sitemap-btn').addEventListener('click', () => downloadFile(document.getElementById('sitemap-output').textContent, 'sitemap.xml', 'application/xml'));
+        })();
+    });
     </script>
 </body>
 </html>
